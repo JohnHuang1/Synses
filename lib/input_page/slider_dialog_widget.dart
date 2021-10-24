@@ -4,7 +4,7 @@ import 'slider_widget.dart';
 class InputDialogStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
-  Icon icon;
+  Widget icon;
   InputDialogStateful(
       {Key? key,
       required this.onInputCallback,
@@ -21,13 +21,13 @@ class _InputDialogState extends State<InputDialogStateful> {
   _InputDialogState(this.onInputCallback, this.title, this.icon);
   Function onInputCallback;
   String title;
-  Icon icon;
+  Widget icon;
   double rvalue = 0;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: icon,
-      onPressed: () => showDialog<String>(
+    return GestureDetector(
+      child: icon,
+      onTap: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),

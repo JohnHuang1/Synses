@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'slider_widget.dart';
@@ -6,7 +5,7 @@ import 'slider_widget.dart';
 class textSliderStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
-  Icon icon;
+  Widget icon;
   textSliderStateful(
       {Key? key,
       required this.onInputCallback,
@@ -23,13 +22,13 @@ class _textSliderState extends State<textSliderStateful> {
   _textSliderState(this.onInputCallback, this.title, this.icon);
   Function onInputCallback;
   String title;
-  Icon icon;
+  Widget icon;
   List<double> rvalue = [0, 0];
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: icon,
-      onPressed: () => showDialog<String>(
+    return GestureDetector(
+      child: icon,
+      onTap: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),

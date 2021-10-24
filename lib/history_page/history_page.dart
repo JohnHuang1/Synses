@@ -40,15 +40,21 @@ class HistoryPage extends StatelessWidget {
         DateFormat('yyyy/mm/dd kk:mm').format(entry.timestamp).split(' ');
     print("entry type ${entry.timeSlept}");
 
+    Widget numDisplay = buildNumDisplay(entry);
+
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
           Column(children: [Text(dates[1]), Text(dates[0])]),
-          Row(children: [entry.getIcon() ?? Container(),
-            Text(entry.getEntryType())],),
-          Text(entry.getEntryValues()[0].toString())
+          Row(
+            children: [
+              entry.getIcon() ?? Container(),
+              Text(entry.getEntryType())
+            ],
+          ),
+          numDisplay
         ],
       ),
       margin: EdgeInsets.only(left: 5, right: 5, top: 5),
@@ -58,5 +64,51 @@ class HistoryPage extends StatelessWidget {
         color: Colors.lightBlueAccent,
       ),
     );
+  }
+
+  Widget buildNumDisplay(Entry entry) {
+    List<dynamic> values = entry.getEntryValues();
+    List<String> prompt = getDataPrompt(entry.getEntryType());
+    return Column(
+      children: prompt
+          .map((e) => Row(
+                children: [Text(e), Text(values[prompt.indexOf(e)].toString())],
+              ))
+          .toList(),
+    );
+  }
+
+  List<String> getDataPrompt(String entryType) {
+    List<String> val = List.empty(growable: true);
+    switch (entryType) {
+      case Entry.sleepString:
+        val.add("Hours: ");
+        break;
+      case Entry.bathroomString:
+        val.add("Discomfort: ");
+        break;
+      case Entry.moodString:
+        val.add("Happiness: ");
+        break;
+      case Entry.exerciseString:
+        val.add("Hours: ");
+        val.add("Intensity: ");
+        break;
+      case Entry.dietString:
+        val.add("Protein: ");
+        val.add("Vegetables: ");
+        val.add("Fruits: ");
+        val.add("Grains: ");
+        val.add("Dairy: ");
+        val.add("Junk Food: ");
+        break;
+      case Entry.ibsIntensityString:
+        val.add("Intensity: ");
+        break;
+      case Entry.hydrationString:
+        val.add("Liters: ");
+        break;
+    }
+    return val;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'slider_widget.dart';
 import 'slider_dialog_widget.dart';
 import 'text_slider_widget.dart';
@@ -24,14 +25,14 @@ class InputPage extends StatelessWidget {
                   inputData[0] = value;
                 },
                 title: 'Total Hours Slept',
-                icon: Icon(Icons.airline_seat_individual_suite)),
+                icon: SvgPicture.asset("images/sleep.svg")),
             textSliderStateful(
                 //Bathroom
                 onInputCallback: (value) {
                   inputData[1] = value;
                 },
                 title: 'Bathroom: Discomfort Level',
-                icon: Icon(Icons.airline_seat_legroom_reduced_sharp)),
+                icon: ImageIcon(AssetImage('images/toilet.png'))),
             InputDialogStateful(
                 //Mood
                 onInputCallback: (value) {
@@ -39,28 +40,28 @@ class InputPage extends StatelessWidget {
                   inputData[3] = value[1];
                 },
                 title: 'Mood/Stress Level',
-                icon: Icon(Icons.add_reaction)),
+                icon: SvgPicture.asset("images/mood.svg")),
             InputDialogStateful(
                 //Exercise
                 onInputCallback: (value) {
                   inputData[4] = value;
                 },
                 title: 'Exercise Intensity',
-                icon: Icon(Icons.add_reaction)),
+                icon: SvgPicture.asset("images/exercise.svg")),
             InputDialogStateful(
                 //Diet
                 onInputCallback: (value) {
                   inputData[5] = value;
                 },
                 title: 'Diet',
-                icon: Icon(Icons.food_bank)),
+                icon: SvgPicture.asset("images/diet.svg")),
             InputDialogStateful(
                 //Hydration
                 onInputCallback: (value) {
                   inputData[6] = value;
                 },
                 title: 'Hydration level',
-                icon: Icon(Icons.add_reaction)),
+                icon: SvgPicture.asset("images/hydration.svg")),
           ]),
     ));
   }
