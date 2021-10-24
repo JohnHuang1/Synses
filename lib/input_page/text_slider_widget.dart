@@ -19,7 +19,7 @@ class _textSliderState extends State<textSliderStateful> {
   _textSliderState(this.onInputCallback, this.title);
   Function onInputCallback;
   String title;
-  int rvalue = 0;
+  List<double> rvalue = [0, 0];
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -28,15 +28,31 @@ class _textSliderState extends State<textSliderStateful> {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),
-          content: SliderStateful(
-            min: 0.0,
-            max: 10.0,
-            divisions: 10,
-            currentSliderValue: 0,
-            onChangedCallback: (value) {
-              rvalue = value;
-            },
-          ),
+          content: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              //posisi
+              mainAxisSize: MainAxisSize.min,
+              // untuk mengatur agar widget column mengikuti widget
+              children: <Widget>[
+                SliderStateful(
+                  min: 0.0,
+                  max: 10.0,
+                  divisions: 10,
+                  currentSliderValue: 0,
+                  onChangedCallback: (value) {
+                    rvalue[1] = value;
+                  },
+                ),
+                TextField(
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter total trips to the restroom'),
+                  onChanged: (value) {
+                    var long2 = double.parse(value);
+                    rvalue[0] = long2;
+                  },
+                ),
+              ]),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
