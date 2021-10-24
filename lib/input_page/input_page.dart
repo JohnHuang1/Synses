@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'slider_widget.dart';
+import 'slider_dialog_widget.dart';
 
 class InputPage extends StatelessWidget {
   List<double> inputData = [0, 0, 0, 0, 0, 0]; //List of values to store inputs
@@ -10,16 +11,11 @@ class InputPage extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
       body: Column(children: [
-        Text('Sleep(In Hours)'),
-        SliderStateful(
-          min: 0.0,
-          max: 10.0,
-          divisions: 10,
-          currentSliderValue: 0,
-          onChangedCallback: (value) {
-            inputData[0] = value;
-          },
-        ),
+        SliderDialog(
+            inputCallback: (value) {
+              inputData[0] = value;
+            },
+            title: 'Total Hours Slept'),
         Text('# of Bathroom Trips'),
         Text('Discomfort of Bathroom Trips'),
         SliderStateful(
