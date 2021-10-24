@@ -49,36 +49,36 @@ class Entry extends HiveObject {
   static const exerciseString = 'Exercise';
   static const weightingString = 'Weighting';
   static const dietString = 'Diet';
-  static const ibsIntensityString= 'IBS Intensity';
+  static const ibsIntensityString = 'IBS Intensity';
   static const hydrationString = 'Hydration';
 
-
-  String getEntryType(){
+  String getEntryType() {
     String val = '';
 
-    if(timeSlept != null){
+    if (timeSlept != null) {
       val = sleepString;
-    } else if(bathroomDiscomfortLevel != null || numOfBathroomVisits != null){
+    } else if (bathroomDiscomfortLevel != null || numOfBathroomVisits != null) {
       val = bathroomString;
-    } else if(happinessLevel != null){
+    } else if (happinessLevel != null) {
       val = moodString;
-    } else if(exerciseDurationHours != null || exerciseIntensity != null){
+    } else if (exerciseDurationHours != null || exerciseIntensity != null) {
       val = exerciseString;
-    } else if(weightingData != null){
+    } else if (weightingData != null) {
       val = weightingString;
-    } else if(dietData != null){
+    } else if (dietData != null) {
       val = dietString;
-    } else if(ibsIntensity != null){
+    } else if (ibsIntensity != null) {
       val = ibsIntensityString;
-    } else if(waterAmt != null){
+    } else if (waterAmt != null) {
       val = hydrationString;
     }
     return val;
   }
-  List<dynamic> getEntryValues(){
+
+  List<dynamic> getEntryValues() {
     List<dynamic> data = List.empty(growable: true);
     print("entry called");
-    switch(getEntryType()){
+    switch (getEntryType()) {
       case sleepString:
         print("sleep called");
         data.add(timeSlept!);
@@ -102,7 +102,7 @@ class Entry extends HiveObject {
         data.add(dietData!.vegetableVal);
         data.add(dietData!.fruitVal);
         data.add(dietData!.grainVal);
-        data.add(dietData!.fruitVal);
+        data.add(dietData!.dairyVal);
         data.add(dietData!.junkFoodVal);
         break;
       case ibsIntensityString:
@@ -115,9 +115,9 @@ class Entry extends HiveObject {
     return data;
   }
 
-  Widget? getIcon(){
+  Widget? getIcon() {
     Widget? icon;
-    switch(getEntryType()){
+    switch (getEntryType()) {
       case sleepString:
         icon = SvgPicture.asset("images/sleep.svg");
         // icon = ImageIcon(AssetImage('images/sleep.svg'));
