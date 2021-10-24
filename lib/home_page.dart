@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> tabPages = [
     InputPage(),
-    GraphPage(),
+    GraphPage(title: "Factors & Severity"),
     HistoryPage(),
   ];
   @override
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, HomePageModel model, child){
+    return Consumer(builder: (context, HomePageModel model, child) {
       return MaterialApp(
         home: bottomMenu(),
       );
