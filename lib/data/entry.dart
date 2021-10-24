@@ -41,4 +41,19 @@ class Entry extends HiveObject {
       this.ibsIntensity,
       this.exerciseIntensity,
       this.numOfBathroomVisits});
+
+  String getEntryType(){
+    String val = '';
+
+    val += (timeSlept == null ? '' : 'Sleep');
+    val += (bathroomDiscomfortLevel == null || numOfBathroomVisits == null ? '' : 'Bathroom');
+    val += (happinessLevel == null ? '' : 'Mood');
+    val += (exerciseDurationHours == null || exerciseIntensity == null ? '' : 'Exercise');
+    val += (weightingData == null ? '' : 'Weighting');
+    val += (dietData == null ? '' : 'Diet');
+    val += (ibsIntensity == null ? '' : 'IBS Intensity');
+    val += (waterAmt == null ? '' : 'Hydration');
+
+    return val;
+  }
 }
