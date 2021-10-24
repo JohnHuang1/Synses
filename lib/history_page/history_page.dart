@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:synses/data/entry.dart';
 import 'package:synses/shared/boxes.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatelessWidget {
   HistoryPage({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class HistoryPage extends StatelessWidget {
   }
 
   Widget buildContent(List<Entry> entries) {
+    print("entries length = ${entries.length}");
     return ListView.builder(
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
@@ -34,11 +36,27 @@ class HistoryPage extends StatelessWidget {
   }
 
   Widget _itemBuilder(Entry entry) {
-    return Row(
-      children: [
-        Text(entry.timestamp.toString()),
-        Text(entry.getEntryType()),
-      ],
+    List<String> dates =
+        DateFormat('yyyy/mm/dd kk:mm').format(entry.timestamp).split(' ');
+    print("entry type ${entry.timeSlept}");
+
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Column(children: [Text(dates[1]), Text(dates[0])]),
+          Row(children: [entry.getIcon() ?? Container(),
+            Text(entry.getEntryType())],),
+          Text(entry.getEntryValues()[0].toString())
+        ],
+      ),
+      margin: EdgeInsets.only(left: 5, right: 5, top: 5),
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.lightBlueAccent,
+      ),
     );
   }
 }
