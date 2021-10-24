@@ -22,7 +22,7 @@ class _InputDialogState extends State<InputDialogStateful> {
   Function onInputCallback;
   String title;
   Icon icon;
-  int rvalue = 0;
+  double rvalue = 0;
   @override
   Widget build(BuildContext context) {
     return IconButton(
