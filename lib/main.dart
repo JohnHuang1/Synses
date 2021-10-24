@@ -39,19 +39,17 @@ class _SynsesState extends State<Synses> {
 
   Widget bottomMenu() {
     return Scaffold(
-      appBar: AppBar(
-        title:
-        Text("BottomNavigationBar", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _pageIndex,
         onTap: onTabTapped,
         backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Input"),
-          BottomNavigationBarItem(icon: Icon(Icons.mail), label: "Graphs"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "History"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.note_alt_outlined), label: "Input"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.auto_graph), label: "Trends"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.access_time_outlined), label: "History"),
         ],
       ),
       body: PageView(
