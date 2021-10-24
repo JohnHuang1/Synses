@@ -6,24 +6,29 @@ import 'slider_widget.dart';
 class textSliderStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
+  Icon icon;
   textSliderStateful(
-      {Key? key, required this.onInputCallback, required this.title})
+      {Key? key,
+      required this.onInputCallback,
+      required this.title,
+      required this.icon})
       : super(key: key);
 
   @override
   State<textSliderStateful> createState() =>
-      _textSliderState(onInputCallback, title);
+      _textSliderState(onInputCallback, title, icon);
 }
 
 class _textSliderState extends State<textSliderStateful> {
-  _textSliderState(this.onInputCallback, this.title);
+  _textSliderState(this.onInputCallback, this.title, this.icon);
   Function onInputCallback;
   String title;
+  Icon icon;
   List<double> rvalue = [0, 0];
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.ac_unit),
+      icon: icon,
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
