@@ -49,8 +49,8 @@ class Entry extends HiveObject {
   static const exerciseString = 'Exercise';
   static const weightingString = 'Weighting';
   static const dietString = 'Diet';
-  static const hydrationString = 'IBS Intensity';
-  static const ibsIntensityString = 'Hydration';
+  static const ibsIntensityString= 'IBS Intensity';
+  static const hydrationString = 'Hydration';
 
 
   String getEntryType(){
@@ -98,7 +98,12 @@ class Entry extends HiveObject {
         data.add(weightingData!);
         break;
       case dietString:
-        data.add(dietData!);
+        data.add(dietData!.proteinVal);
+        data.add(dietData!.vegetableVal);
+        data.add(dietData!.fruitVal);
+        data.add(dietData!.grainVal);
+        data.add(dietData!.fruitVal);
+        data.add(dietData!.junkFoodVal);
         break;
       case ibsIntensityString:
         data.add(ibsIntensity!);

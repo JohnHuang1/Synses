@@ -19,6 +19,7 @@ class DietDataAdapter extends TypeAdapter<DietData> {
     return DietData(
       proteinVal: fields[0] as double,
       fruitVal: fields[1] as double,
+      vegetableVal: fields[5] as double,
       grainVal: fields[2] as double,
       dairyVal: fields[3] as double,
       junkFoodVal: fields[4] as double,
@@ -28,7 +29,7 @@ class DietDataAdapter extends TypeAdapter<DietData> {
   @override
   void write(BinaryWriter writer, DietData obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.proteinVal)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class DietDataAdapter extends TypeAdapter<DietData> {
       ..writeByte(3)
       ..write(obj.dairyVal)
       ..writeByte(4)
-      ..write(obj.junkFoodVal);
+      ..write(obj.junkFoodVal)
+      ..writeByte(5)
+      ..write(obj.vegetableVal);
   }
 
   @override

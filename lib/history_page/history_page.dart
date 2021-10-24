@@ -20,7 +20,7 @@ class HistoryPage extends StatelessWidget {
           valueListenable: Boxes.getEntries().listenable(),
           builder: (context, box, _) {
             final entries = box.values.toList().cast<Entry>();
-            return entries.isNotEmpty ? buildContent(entries) : Container();
+            return entries.isNotEmpty ? buildContent(entries.reversed.toList()) : Container();
           }),
     );
   }
@@ -72,7 +72,8 @@ class HistoryPage extends StatelessWidget {
     return Column(
       children: prompt
           .map((e) => Row(
-                children: [Text(e), Text(values[prompt.indexOf(e)].toString())],
+        mainAxisAlignment: MainAxisAlignment.start,
+                children: [Text(e), Text((values[prompt.indexOf(e)] * 100).round().toString())],
               ))
           .toList(),
     );
@@ -86,6 +87,7 @@ class HistoryPage extends StatelessWidget {
         break;
       case Entry.bathroomString:
         val.add("Discomfort: ");
+        val.add("# of Trips: ");
         break;
       case Entry.moodString:
         val.add("Happiness: ");
@@ -95,12 +97,12 @@ class HistoryPage extends StatelessWidget {
         val.add("Intensity: ");
         break;
       case Entry.dietString:
-        val.add("Protein: ");
-        val.add("Vegetables: ");
-        val.add("Fruits: ");
-        val.add("Grains: ");
-        val.add("Dairy: ");
-        val.add("Junk Food: ");
+        val.add("Protein %: ");
+        val.add("Vegetables %: ");
+        val.add("Fruits %: ");
+        val.add("Grains %: ");
+        val.add("Dairy %: ");
+        val.add("Junk Food %: ");
         break;
       case Entry.ibsIntensityString:
         val.add("Intensity: ");

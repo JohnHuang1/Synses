@@ -2,23 +2,25 @@
 import 'package:flutter/material.dart';
 import 'slider_widget.dart';
 
-class textSliderStateful extends StatefulWidget {
+class TextSliderStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
   Widget icon;
-  textSliderStateful(
+  String label;
+  TextSliderStateful(
       {Key? key,
       required this.onInputCallback,
       required this.title,
-      required this.icon})
+      required this.icon,
+      this.label = ''})
       : super(key: key);
 
   @override
-  State<textSliderStateful> createState() =>
+  State<TextSliderStateful> createState() =>
       _textSliderState(onInputCallback, title, icon);
 }
 
-class _textSliderState extends State<textSliderStateful> {
+class _textSliderState extends State<TextSliderStateful> {
   _textSliderState(this.onInputCallback, this.title, this.icon);
   Function onInputCallback;
   String title;
@@ -33,11 +35,11 @@ class _textSliderState extends State<textSliderStateful> {
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),
           content: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               //posisi
               mainAxisSize: MainAxisSize.min,
               // untuk mengatur agar widget column mengikuti widget
               children: <Widget>[
+                Text(widget.label),
                 SliderStateful(
                   min: 0.0,
                   max: 10.0,
@@ -50,7 +52,7 @@ class _textSliderState extends State<textSliderStateful> {
                 TextField(
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Enter total trips to the restroom'),
+                      hintText: 'Enter total trips to the bathroom'),
                   onChanged: (value) {
                     var long2 = double.parse(value);
                     rvalue[0] = long2;

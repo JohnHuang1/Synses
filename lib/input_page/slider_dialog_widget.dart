@@ -5,11 +5,13 @@ class InputDialogStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
   Widget icon;
+  String label;
   InputDialogStateful(
       {Key? key,
       required this.onInputCallback,
       required this.title,
-      required this.icon})
+      required this.icon,
+      this.label = ''})
       : super(key: key);
 
   @override
@@ -31,14 +33,20 @@ class _InputDialogState extends State<InputDialogStateful> {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),
-          content: SliderStateful(
-            min: 0.0,
-            max: 10.0,
-            divisions: 10,
-            currentSliderValue: 0,
-            onChangedCallback: (value) {
-              rvalue = value;
-            },
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(widget.label),
+              SliderStateful(
+                min: 0.0,
+                max: 10.0,
+                divisions: 10,
+                currentSliderValue: 0,
+                onChangedCallback: (value) {
+                  rvalue = value;
+                },
+              )
+            ],
           ),
           actions: <Widget>[
             TextButton(

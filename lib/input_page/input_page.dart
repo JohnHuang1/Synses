@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:synses/data/dietData.dart';
 import 'package:synses/data/entry.dart';
+import 'package:synses/input_page/diet_input_widget.dart';
 import 'package:synses/input_page/slider_dialog_exercise.dart';
 import 'package:synses/shared/boxes.dart';
 import 'slider_dialog_widget.dart';
 import 'text_slider_widget.dart';
 
-class InputPage extends StatelessWidget {
-  List<double> inputData = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ]; //List of values to store inputs
+class InputPage extends StatelessWidget {//List of values to store inputs
   InputPage({Key? key}) : super(key: key);
 
   final box = Boxes.getEntries();
@@ -36,68 +27,65 @@ class InputPage extends StatelessWidget {
             InputDialogStateful(
                 //Sleep
                 onInputCallback: (value) {
-                  inputData[0] = value;
                   print("sleep $value");
                   box.add(Entry(timestamp: DateTime.now(), timeSlept: value));
                 },
-                title: 'Total Hours Slept',
+                title: 'Sleep',
+                label: 'Hours Slept',
                 icon: SvgPicture.asset("images/sleep.svg")),
-            textSliderStateful(
+            TextSliderStateful(
                 //Bathroom
                 onInputCallback: (value) {
-                  inputData[1] = value;
-                  inputData[2] = value;
-                  print("bathroom ${value[1]}  ${value[2]}");
-                  box.add(Entry(
-                      timestamp: DateTime.now(),
-                      bathroomDiscomfortLevel: value[1],
-                      numOfBathroomVisits: value[2]));
+                  print("bathroom ${value[0]}  ${value[1]}");
+                  box.add(Entry(timestamp: DateTime.now(), bathroomDiscomfortLevel: value[0], numOfBathroomVisits: value[1]));
                 },
-                title: 'Bathroom: Discomfort Level',
+                title: 'Bathroom',
+                label: 'Discomfort Level',
                 icon: ImageIcon(AssetImage('images/toilet.png'))),
             InputDialogStateful(
                 //Mood
                 onInputCallback: (value) {
-                  inputData[3] = value[1];
                   print("mood $value");
-                  box.add(
-                      Entry(timestamp: DateTime.now(), happinessLevel: value));
+                  box.add(Entry(timestamp: DateTime.now(), happinessLevel: value));
                 },
-                title: 'Mood/Stress Level',
+                title: 'Mood/Stress',
+                label: "How are you feeling?",
                 icon: SvgPicture.asset("images/mood.svg")),
-            exerciseSliderStateful(
+            ExerciseSliderStateful(
                 //Exercise
                 onInputCallback: (value) {
-                  inputData[4] = value[0];
-                  inputData[5] = value[1];
+                  print("exercise ${value[0]}  ${value[1]}");
+                  box.add(Entry(timestamp: DateTime.now(), exerciseDurationHours: value[0], exerciseIntensity: value[1]));
                 },
-                title: 'Exercise Intensity',
+                title: 'Exercise',
                 icon: SvgPicture.asset("images/exercise.svg")),
-            InputDialogStateful(
+            DietInputWidget(
                 //Diet
-                onInputCallback: (value) {
-                  inputData[6] = value;
+                onInputCallback: (List<double> value) {
+                  double total = value.reduce((a, b) => a + b);
+                  print("exercise ${value[0]}  ${value[1]} ${value[2]} ${value[3]} ${value[4]} ${value[5]}");
+                  box.add(Entry(timestamp: DateTime.now(), dietData: DietData(proteinVal: value[0]/total, vegetableVal: value[1]/total,fruitVal: value[2]/total, grainVal: value[3]/total, dairyVal: value[4]/total, junkFoodVal: value[5]/total)));
                 },
                 title: 'Diet',
                 icon: SvgPicture.asset("images/diet.svg")),
             InputDialogStateful(
                 //Hydration
                 onInputCallback: (value) {
-                  inputData[7] = value;
                   print("hydration $value");
                   box.add(Entry(timestamp: DateTime.now(), waterAmt: value));
                 },
                 title: 'Hydration level',
+                label: 'Liters of Water',
                 icon: SvgPicture.asset("images/hydration.svg")),
             InputDialogStateful(
                 //IBS Severity
                 onInputCallback: (value) {
-                  inputData[8] = value;
                   print("ibsIntensity $value");
                   box.add(
                       Entry(timestamp: DateTime.now(), ibsIntensity: value));
                 },
-                title: 'IBS Severity',
+                title: 'IBS Today?',
+                label: 'Intensity',
                 icon: SvgPicture.asset("images/ibsIntensity.svg")),
           ]),
     ));

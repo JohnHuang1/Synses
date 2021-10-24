@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:synses/data/dietData.dart';
@@ -24,6 +25,7 @@ void main() async {
 class SynsesApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    debugPaintSizeEnabled = false;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<HomePageModel>(create: (context) => HomePageModel()),

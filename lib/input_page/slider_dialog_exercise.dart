@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'slider_widget.dart';
 
-class exerciseSliderStateful extends StatefulWidget {
+class ExerciseSliderStateful extends StatefulWidget {
   Function onInputCallback;
   String title;
   Widget icon;
-  exerciseSliderStateful(
+  ExerciseSliderStateful(
       {Key? key,
       required this.onInputCallback,
       required this.title,
@@ -13,12 +13,12 @@ class exerciseSliderStateful extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<exerciseSliderStateful> createState() =>
-      _exerciseSliderState(onInputCallback, title, icon);
+  State<ExerciseSliderStateful> createState() =>
+      _ExerciseSliderState(onInputCallback, title, icon);
 }
 
-class _exerciseSliderState extends State<exerciseSliderStateful> {
-  _exerciseSliderState(this.onInputCallback, this.title, this.icon);
+class _ExerciseSliderState extends State<ExerciseSliderStateful> {
+  _ExerciseSliderState(this.onInputCallback, this.title, this.icon);
   Function onInputCallback;
   String title;
   Widget icon;
@@ -32,12 +32,11 @@ class _exerciseSliderState extends State<exerciseSliderStateful> {
         builder: (BuildContext context) => AlertDialog(
           title: Text(title),
           content: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               //posisi
               mainAxisSize: MainAxisSize.min,
               // untuk mengatur agar widget column mengikuti widget
               children: <Widget>[
-                Text("Exercise Length:"),
+                Text("Hours of Exercise"),
                 SliderStateful(
                   min: 0.0,
                   max: 10.0,
@@ -47,7 +46,7 @@ class _exerciseSliderState extends State<exerciseSliderStateful> {
                     rvalue[0] = value;
                   },
                 ),
-                Text("Exercise Intensity:"),
+                Text("Exercise Intensity"),
                 SliderStateful(
                   min: 0.0,
                   max: 10.0,

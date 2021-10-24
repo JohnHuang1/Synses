@@ -14,10 +14,13 @@ class DietData extends HiveObject {
   late double dairyVal;
   @HiveField(4)
   late double junkFoodVal;
+  @HiveField(5)
+  late double vegetableVal;
 
   DietData(
       {required this.proteinVal,
       required this.fruitVal,
+      required this.vegetableVal,
       required this.grainVal,
       required this.dairyVal,
       required this.junkFoodVal});
