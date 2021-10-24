@@ -1,16 +1,10 @@
-# synses
+# Synses
 
 HackDuke 2021 IBS App
+Team members: Jonathan Zhao, John Huang, Eric Zhang, Tonya Hu, Tony Cui
+Our goal: A simple to use/look app that identifies most relevant patient-specific IBS causes and helps the users alleviate symptoms through lifestyle management.
 
-## Getting Started
+What is IBS? IBS stands for Irritable Bowel Syndrome. Over 10% of the US population suffer from various levels of IBS.
 
-This project is a starting point for a Flutter application.
+Synses tracks and identifies trends in user lifestyles that may have a high impact on their degree of IBS intensity.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
