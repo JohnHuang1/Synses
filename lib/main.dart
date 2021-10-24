@@ -6,6 +6,7 @@ import 'package:synses/data/dietData.dart';
 import 'package:synses/data/weightingData.dart';
 import 'package:synses/home_page.dart';
 import 'package:synses/home_page_model.dart';
+import 'package:synses/hpage.dart';
 import 'package:synses/shared/boxes.dart';
 import 'package:synses/shared/routes.dart';
 import './data/entry.dart';
@@ -22,23 +23,27 @@ void main() async {
   runApp(SynsesApp());
 }
 
-class SynsesApp extends StatelessWidget{
+class SynsesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<HomePageModel>(create: (context) => HomePageModel()),
+        ChangeNotifierProvider<HomePageModel>(
+            create: (context) => HomePageModel()),
       ],
       child: MaterialApp(
+        home: hpage(),
         onGenerateRoute: _routeFactory(),
         theme: _theme(),
       ),
     );
   }
-  RouteFactory _routeFactory(){
-    return (settings){
-      Map<String, dynamic>? arguments = settings.arguments as Map<String, dynamic>?;
+
+  RouteFactory _routeFactory() {
+    return (settings) {
+      Map<String, dynamic>? arguments =
+          settings.arguments as Map<String, dynamic>?;
       Widget screen;
       switch (settings.name) {
         case HomePageRoute:
@@ -51,9 +56,7 @@ class SynsesApp extends StatelessWidget{
     };
   }
 
-  ThemeData _theme(){
-    return ThemeData(
-    );
+  ThemeData _theme() {
+    return ThemeData();
   }
-
 }
