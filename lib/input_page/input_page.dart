@@ -18,41 +18,47 @@ class InputPage extends StatelessWidget {
           crossAxisCount: 3,
           children: [
             InputDialogStateful(
+                //Sleep
                 onInputCallback: (value) {
                   inputData[0] = value;
                 },
-                title: 'Total Hours Slept'),
-            Text('# of Bathroom Trips'),
-            Text('Discomfort of Bathroom Trips'),
-            SliderStateful(
-              min: 0.0,
-              max: 10.0,
-              divisions: 10,
-              currentSliderValue: 0,
-              onChangedCallback: (value) {
-                inputData[1] = value;
-              },
-            ),
-            Text('Stress Level'),
-            SliderStateful(
-              min: 0.0,
-              max: 10.0,
-              divisions: 10,
-              currentSliderValue: 0,
-              onChangedCallback: (value) {
-                inputData[2] = value;
-              },
-            ),
-            Text('Exercise'),
-            SliderStateful(
-              min: 0.0,
-              max: 10.0,
-              divisions: 10,
-              currentSliderValue: 0,
-              onChangedCallback: (value) {
-                inputData[3] = value;
-              },
-            ),
+                title: 'Total Hours Slept',
+                icon: Icon(Icons.airline_seat_individual_suite)),
+            InputDialogStateful(
+                //Bathroom
+                onInputCallback: (value) {
+                  inputData[0] = value;
+                },
+                title: 'Bathroom: Discomfort Level',
+                icon: Icon(Icons.airline_seat_legroom_reduced_sharp)),
+            InputDialogStateful(
+                //Mood
+                onInputCallback: (value) {
+                  inputData[0] = value;
+                },
+                title: 'Mood/Stress Level',
+                icon: Icon(Icons.add_reaction)),
+            InputDialogStateful(
+                //Exercise
+                onInputCallback: (value) {
+                  inputData[0] = value;
+                },
+                title: 'Exercise Intensity',
+                icon: Icon(Icons.add_reaction)),
+            InputDialogStateful(
+                //Diet
+                onInputCallback: (value) {
+                  inputData[0] = value;
+                },
+                title: 'Diet',
+                icon: Icon(Icons.food_bank)),
+            InputDialogStateful(
+                //Hydration
+                onInputCallback: (value) {
+                  inputData[0] = value;
+                },
+                title: 'Hydration level',
+                icon: Icon(Icons.add_reaction)),
           ]),
     ));
   }
