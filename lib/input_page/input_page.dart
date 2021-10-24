@@ -5,7 +5,16 @@ import 'slider_dialog_widget.dart';
 import 'text_slider_widget.dart';
 
 class InputPage extends StatelessWidget {
-  List<double> inputData = [0, 0, 0, 0, 0, 0]; //List of values to store inputs
+  List<double> inputData = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]; //List of values to store inputs
   InputPage({Key? key}) : super(key: key);
 
   @override
@@ -62,6 +71,13 @@ class InputPage extends StatelessWidget {
                 },
                 title: 'Hydration level',
                 icon: SvgPicture.asset("images/hydration.svg")),
+            InputDialogStateful(
+                //IBS Severity
+                onInputCallback: (value) {
+                  inputData[7] = value;
+                },
+                title: 'IBS Severity',
+                icon: SvgPicture.asset("images/mood.svg")),
           ]),
     ));
   }
