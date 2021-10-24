@@ -16,40 +16,47 @@ class EntryAdapter extends TypeAdapter<Entry> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Entry()
-      ..timestamp = fields[0] as DateTime
-      ..sleepData = fields[1] as SleepData?
-      ..bathroomData = fields[2] as BathroomData?
-      ..moodData = fields[3] as MoodData?
-      ..exerciseData = fields[4] as ExerciseData?
-      ..weightingData = fields[5] as WeightingData?
-      ..dietData = fields[6] as DietData?
-      ..hydrationData = fields[7] as HydrationData?
-      ..ibsData = fields[8] as IBSData?;
+    return Entry(
+      timestamp: fields[0] as DateTime,
+      timeSlept: fields[1] as double?,
+      bathroomDiscomfortLevel: fields[2] as double?,
+      happinessLevel: fields[3] as double?,
+      exerciseDurationHours: fields[4] as double?,
+      weightingData: fields[5] as WeightingData?,
+      dietData: fields[6] as DietData?,
+      waterAmt: fields[7] as double?,
+      ibsIntensity: fields[8] as double?,
+      exerciseIntensity: fields[9] as double?,
+      numOfBathroomVisits: fields[10] as double?,
+    );
   }
 
   @override
   void write(BinaryWriter writer, Entry obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.timestamp)
       ..writeByte(1)
-      ..write(obj.sleepData)
+      ..write(obj.timeSlept)
       ..writeByte(2)
-      ..write(obj.bathroomData)
+      ..write(obj.bathroomDiscomfortLevel)
       ..writeByte(3)
-      ..write(obj.moodData)
+      ..write(obj.happinessLevel)
       ..writeByte(4)
-      ..write(obj.exerciseData)
+      ..write(obj.exerciseDurationHours)
       ..writeByte(5)
       ..write(obj.weightingData)
       ..writeByte(6)
       ..write(obj.dietData)
       ..writeByte(7)
-      ..write(obj.hydrationData)
+      ..write(obj.waterAmt)
       ..writeByte(8)
-      ..write(obj.ibsData);
+      ..write(obj.ibsIntensity)
+      ..writeByte(9)
+      ..write(obj.exerciseIntensity)
+      ..writeByte(10)
+      ..write(obj.numOfBathroomVisits);
   }
 
   @override

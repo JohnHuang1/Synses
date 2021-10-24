@@ -16,13 +16,14 @@ class WeightingDataAdapter extends TypeAdapter<WeightingData> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return WeightingData()
-      ..sleepRank = fields[0] as double
-      ..bathroomRank = fields[1] as double
-      ..moodRank = fields[2] as double
-      ..exerciseRank = fields[3] as double
-      ..dietRank = fields[4] as double
-      ..hydrationRank = fields[5] as double;
+    return WeightingData(
+      sleepRank: fields[0] as double,
+      bathroomRank: fields[1] as double,
+      moodRank: fields[2] as double,
+      exerciseRank: fields[3] as double,
+      dietRank: fields[4] as double,
+      hydrationRank: fields[5] as double,
+    );
   }
 
   @override

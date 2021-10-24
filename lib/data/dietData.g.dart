@@ -16,12 +16,13 @@ class DietDataAdapter extends TypeAdapter<DietData> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DietData()
-      ..proteinVal = fields[0] as double
-      ..fruitVal = fields[1] as double
-      ..grainVal = fields[2] as double
-      ..dairyVal = fields[3] as double
-      ..junkFoodVal = fields[4] as double;
+    return DietData(
+      proteinVal: fields[0] as double,
+      fruitVal: fields[1] as double,
+      grainVal: fields[2] as double,
+      dairyVal: fields[3] as double,
+      junkFoodVal: fields[4] as double,
+    );
   }
 
   @override
