@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, HomePageModel model, child) {
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: bottomMenu(),
       );
     });

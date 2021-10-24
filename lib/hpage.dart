@@ -25,6 +25,7 @@ class _hpageState extends State<hpage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: FittedBox(
       child: Image.asset('images/synsesLoading.png'),
       fit: BoxFit.fill,

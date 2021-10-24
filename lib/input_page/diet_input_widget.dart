@@ -16,7 +16,7 @@ class DietInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       child: icon,
       onTap: () {
         showDialog(

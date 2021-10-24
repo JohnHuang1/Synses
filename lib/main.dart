@@ -33,6 +33,7 @@ class SynsesApp extends StatelessWidget {
             create: (context) => HomePageModel()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: hpage(),
         onGenerateRoute: _routeFactory(),
         theme: _theme(),

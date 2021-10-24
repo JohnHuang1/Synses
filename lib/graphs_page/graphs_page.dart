@@ -49,23 +49,17 @@ class GraphPageStat extends State<GraphPage> {
   }
 
   Widget getChart(Box<Entry> box, int index) {
-    return SfCartesianChart(
+    Iterable<Entry> data = box.values
+        .where((element) => element.getEntryType() == labels[_selectedIndex]);
+    return data.isEmpty ?Center(child: Text("No Data")) : SfCartesianChart(
       title: ChartTitle(text: labels[index] + ': Factors & Severity'),
 
-      series: getChartData(box),
+      series: getChartData(data),
       primaryXAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
-      // primaryYAxis: NumericAxis(
-      // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0)),
     );
   }
 
-  List<LineSeries<IBSData, double>> getChartData(Box<Entry> box) {
-    // List<IBSData> data = box.values
-    //     .where((element) => element.getEntryType() == labels[_selectedIndex])
-    //     .map((e) => IBSData((index++).toDouble(), e.getEntryValues()[0]))
-    //     .toList();
-    Iterable<Entry> data = box.values
-        .where((element) => element.getEntryType() == labels[_selectedIndex]);
+  List<LineSeries<IBSData, double>> getChartData(Iterable<Entry> data) {
 
     List<LineSeries<IBSData, double>> vals = List.empty(growable: true);
 

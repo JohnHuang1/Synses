@@ -25,7 +25,7 @@ class _ExerciseSliderState extends State<ExerciseSliderStateful> {
   List<double> rvalue = [0, 0];
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       child: icon,
       onTap: () => showDialog<String>(
         context: context,

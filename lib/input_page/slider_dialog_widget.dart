@@ -27,7 +27,7 @@ class _InputDialogState extends State<InputDialogStateful> {
   double rvalue = 0;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       child: icon,
       onTap: () => showDialog<String>(
         context: context,

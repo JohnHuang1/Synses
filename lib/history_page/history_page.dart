@@ -33,7 +33,7 @@ class HistoryPage extends StatelessWidget {
 
   Widget _itemBuilder(Entry entry) {
     List<String> dates =
-        DateFormat('yyyy/mm/dd kk:mm').format(entry.timestamp).split(' ');
+        DateFormat('yyyy/MM/dd kk:mm').format(entry.timestamp).split(' ');
     print("entry type ${entry.timeSlept}");
 
     Widget numDisplay = buildNumDisplay(entry);
