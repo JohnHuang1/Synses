@@ -77,19 +77,21 @@ class _CustomDialogState extends State<CustomDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.title),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children:
-            foodCat.map((e) => _itemBuilder(foodCat.indexOf(e), e)).toList()
-              ..add(Container(
-                  width: 300,
-                  height: 200,
-                  child: PieChart(
-                    key: ValueKey(key),
-                    dataMap: foodVals,
-                    chartLegendSpacing: 20,
-                    animationDuration: Duration(milliseconds: 0),
-                  ))),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children:
+              foodCat.map((e) => _itemBuilder(foodCat.indexOf(e), e)).toList()
+                ..add(Container(
+                    width: 300,
+                    height: 200,
+                    child: PieChart(
+                      key: ValueKey(key),
+                      dataMap: foodVals,
+                      chartLegendSpacing: 20,
+                      animationDuration: Duration(milliseconds: 0),
+                    ))),
+        ),
       ),
       actions: <Widget>[
         TextButton(
@@ -99,7 +101,8 @@ class _CustomDialogState extends State<CustomDialog> {
         TextButton(
           onPressed: () {
             Navigator.pop(context, 'OK');
-            widget.onInputCallback(foodVals.entries.map((e) => e.value).toList(growable: false));
+            widget.onInputCallback(
+                foodVals.entries.map((e) => e.value).toList(growable: false));
           },
           child: const Text('OK'),
         ),
@@ -117,8 +120,7 @@ class _CustomDialogState extends State<CustomDialog> {
             onChanged: (toggle) {
               setState(() {
                 foodToggle[index] = toggle!;
-                foodVals.update(
-                    foodCat[index], (value) => 0);
+                foodVals.update(foodCat[index], (value) => 0);
                 key += 1;
               });
             }),
@@ -128,22 +130,22 @@ class _CustomDialogState extends State<CustomDialog> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  foodToggle[index]
-                      ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: SmallSlider(
-                      valueChanged: (newValue) {
-                        setState(() {
-                          foodVals.update(
-                              foodCat[index], (value) => newValue);
-                          key += 1;
-                          print("foodVals = $foodVals");
-                        });
-                      },
-                    ),
-                  )
-                      : Container()
-                ]))
+              foodToggle[index]
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: SmallSlider(
+                        valueChanged: (newValue) {
+                          setState(() {
+                            foodVals.update(
+                                foodCat[index], (value) => newValue);
+                            key += 1;
+                            print("foodVals = $foodVals");
+                          });
+                        },
+                      ),
+                    )
+                  : Container()
+            ]))
       ],
     );
   }

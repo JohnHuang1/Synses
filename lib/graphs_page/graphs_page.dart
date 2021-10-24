@@ -20,8 +20,8 @@ class GraphPageStat extends State<GraphPage> {
     'Mood',
     'Exercise',
     'Diet',
-    "IBS Intensity",
-    'Hydration'
+    'Hydration',
+    'IBS Intensity'
   ];
   int _selectedIndex = 0;
 
@@ -38,16 +38,19 @@ class GraphPageStat extends State<GraphPage> {
           return SafeArea(
             child: Scaffold(
               body: Column(
-                children: [Expanded(child: getChart(box)), getBottomNavBar()],
+                children: [
+                  Expanded(child: getChart(box, _selectedIndex)),
+                  getBottomNavBar()
+                ],
               ),
             ),
           );
         });
   }
 
-  Widget getChart(Box<Entry> box) {
+  Widget getChart(Box<Entry> box, int index) {
     return SfCartesianChart(
-      title: ChartTitle(text: 'Factors & Severity'),
+      title: ChartTitle(text: labels[index] + ': Factors & Severity'),
 
       series: getChartData(box),
       primaryXAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.shift),
@@ -65,17 +68,26 @@ class GraphPageStat extends State<GraphPage> {
         .where((element) => element.getEntryType() == labels[_selectedIndex]);
 
     List<LineSeries<IBSData, double>> vals = List.empty(growable: true);
-    
-    List<MaterialColor> colors = [Colors.blue, Colors.red, Colors.green, Colors.purple, Colors.cyan, Colors.pink];
 
-    for(int i = 0; i < (data.first.getEntryValues()).length; i++){
+    List<MaterialColor> colors = [
+      Colors.blue,
+      Colors.red,
+      Colors.green,
+      Colors.purple,
+      Colors.cyan,
+      Colors.pink
+    ];
+
+    for (int i = 0; i < (data.first.getEntryValues()).length; i++) {
       int index = 0;
       vals.add(LineSeries<IBSData, double>(
-          dataSource: data.map((e) => IBSData((index++).toDouble(), e.getEntryValues()[i])).toList(),
+          dataSource: data
+              .map((e) => IBSData((index++).toDouble(), e.getEntryValues()[i]))
+              .toList(),
           xValueMapper: (IBSData severity, _) => severity.factor,
           yValueMapper: (IBSData severity, _) => severity.severity,
           dataLabelSettings:
-          DataLabelSettings(isVisible: true, color: colors[i])));
+              DataLabelSettings(isVisible: true, color: colors[i])));
     }
 
     return vals;
@@ -90,7 +102,10 @@ class GraphPageStat extends State<GraphPage> {
             (e) => Container(
               height: 50,
               child: InkWell(
-                highlightColor: labels.indexOf(e) == _selectedIndex ? Colors.lightBlueAccent: null,
+                highlightColor: labels.indexOf(e) == _selectedIndex
+                    ? Colors.lightBlueAccent
+                    : null,
+                focusColor: Colors.lightBlueAccent,
                 onTap: () {
                   setState(() {
                     _selectedIndex = labels.indexOf(e);
