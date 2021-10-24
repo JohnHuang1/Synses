@@ -8,7 +8,8 @@ import 'package:synses/shared/boxes.dart';
 import 'slider_dialog_widget.dart';
 import 'text_slider_widget.dart';
 
-class InputPage extends StatelessWidget {//List of values to store inputs
+class InputPage extends StatelessWidget {
+  //List of values to store inputs
   InputPage({Key? key}) : super(key: key);
 
   final box = Boxes.getEntries();
@@ -37,7 +38,10 @@ class InputPage extends StatelessWidget {//List of values to store inputs
                 //Bathroom
                 onInputCallback: (value) {
                   print("bathroom ${value[0]}  ${value[1]}");
-                  box.add(Entry(timestamp: DateTime.now(), bathroomDiscomfortLevel: value[0], numOfBathroomVisits: value[1]));
+                  box.add(Entry(
+                      timestamp: DateTime.now(),
+                      bathroomDiscomfortLevel: value[1],
+                      numOfBathroomVisits: value[0]));
                 },
                 title: 'Bathroom',
                 label: 'Discomfort Level',
@@ -46,7 +50,8 @@ class InputPage extends StatelessWidget {//List of values to store inputs
                 //Mood
                 onInputCallback: (value) {
                   print("mood $value");
-                  box.add(Entry(timestamp: DateTime.now(), happinessLevel: value));
+                  box.add(
+                      Entry(timestamp: DateTime.now(), happinessLevel: value));
                 },
                 title: 'Mood/Stress',
                 label: "How are you feeling?",
@@ -55,7 +60,10 @@ class InputPage extends StatelessWidget {//List of values to store inputs
                 //Exercise
                 onInputCallback: (value) {
                   print("exercise ${value[0]}  ${value[1]}");
-                  box.add(Entry(timestamp: DateTime.now(), exerciseDurationHours: value[0], exerciseIntensity: value[1]));
+                  box.add(Entry(
+                      timestamp: DateTime.now(),
+                      exerciseDurationHours: value[1],
+                      exerciseIntensity: value[0]));
                 },
                 title: 'Exercise',
                 icon: SvgPicture.asset("images/exercise.svg")),
@@ -63,8 +71,17 @@ class InputPage extends StatelessWidget {//List of values to store inputs
                 //Diet
                 onInputCallback: (List<double> value) {
                   double total = value.reduce((a, b) => a + b);
-                  print("exercise ${value[0]}  ${value[1]} ${value[2]} ${value[3]} ${value[4]} ${value[5]}");
-                  box.add(Entry(timestamp: DateTime.now(), dietData: DietData(proteinVal: value[0]/total, vegetableVal: value[1]/total,fruitVal: value[2]/total, grainVal: value[3]/total, dairyVal: value[4]/total, junkFoodVal: value[5]/total)));
+                  print(
+                      "exercise ${value[0]}  ${value[1]} ${value[2]} ${value[3]} ${value[4]} ${value[5]}");
+                  box.add(Entry(
+                      timestamp: DateTime.now(),
+                      dietData: DietData(
+                          proteinVal: value[0] / total,
+                          vegetableVal: value[1] / total,
+                          fruitVal: value[2] / total,
+                          grainVal: value[3] / total,
+                          dairyVal: value[4] / total,
+                          junkFoodVal: value[5] / total)));
                 },
                 title: 'Diet',
                 icon: SvgPicture.asset("images/diet.svg")),
