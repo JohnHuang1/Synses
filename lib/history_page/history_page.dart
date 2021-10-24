@@ -14,7 +14,9 @@ class HistoryPage extends StatelessWidget {
           valueListenable: Boxes.getEntries().listenable(),
           builder: (context, box, _) {
             final entries = box.values.toList().cast<Entry>();
-            return entries.isNotEmpty ? buildContent(entries.reversed.toList()) : Container();
+            return entries.isNotEmpty
+                ? buildContent(entries.reversed.toList())
+                : Container();
           }),
     );
   }
@@ -66,8 +68,11 @@ class HistoryPage extends StatelessWidget {
     return Column(
       children: prompt
           .map((e) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-                children: [Text(e), Text((values[prompt.indexOf(e)] * 100).round().toString())],
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(e),
+                  Text((values[prompt.indexOf(e)]).round().toString())
+                ],
               ))
           .toList(),
     );

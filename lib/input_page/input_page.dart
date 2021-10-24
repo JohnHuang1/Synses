@@ -76,12 +76,12 @@ class InputPage extends StatelessWidget {
                   box.add(Entry(
                       timestamp: DateTime.now(),
                       dietData: DietData(
-                          proteinVal: value[0] / total,
-                          vegetableVal: value[1] / total,
-                          fruitVal: value[2] / total,
-                          grainVal: value[3] / total,
-                          dairyVal: value[4] / total,
-                          junkFoodVal: value[5] / total)));
+                          proteinVal: value[0] / total * 100,
+                          vegetableVal: value[1] / total * 100,
+                          fruitVal: value[2] / total * 100,
+                          grainVal: value[3] / total * 100,
+                          dairyVal: value[4] / total * 100,
+                          junkFoodVal: value[5] / total * 100)));
                 },
                 title: 'Diet',
                 icon: SvgPicture.asset("images/diet.svg")),
