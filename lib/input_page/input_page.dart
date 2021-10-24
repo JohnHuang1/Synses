@@ -77,7 +77,7 @@ class InputPage extends StatelessWidget {
                   inputData[7] = value;
                 },
                 title: 'IBS Severity',
-                icon: SvgPicture.asset("images/mood.svg")),
+                icon: SvgPicture.asset("images/ibsIntensity.svg")),
           ]),
     ));
   }
