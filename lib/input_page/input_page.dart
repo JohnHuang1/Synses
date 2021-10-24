@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'slider_widget.dart';
+import 'package:synses/data/entry.dart';
+import 'package:synses/shared/boxes.dart';
 import 'slider_dialog_widget.dart';
 import 'text_slider_widget.dart';
 
@@ -17,6 +18,8 @@ class InputPage extends StatelessWidget {
   ]; //List of values to store inputs
   InputPage({Key? key}) : super(key: key);
 
+  final box = Boxes.getEntries();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,6 +35,8 @@ class InputPage extends StatelessWidget {
                 //Sleep
                 onInputCallback: (value) {
                   inputData[0] = value;
+                  print("sleep $value");
+                  box.add(Entry(timestamp: DateTime.now(), timeSlept: value));
                 },
                 title: 'Total Hours Slept',
                 icon: SvgPicture.asset("images/sleep.svg")),
@@ -39,14 +44,18 @@ class InputPage extends StatelessWidget {
                 //Bathroom
                 onInputCallback: (value) {
                   inputData[1] = value;
+                  inputData[2] = value;
+                  print("bathroom ${value[1]}  ${value[2]}");
+                  box.add(Entry(timestamp: DateTime.now(), bathroomDiscomfortLevel: value[1], numOfBathroomVisits: value[2]));
                 },
                 title: 'Bathroom: Discomfort Level',
                 icon: ImageIcon(AssetImage('images/toilet.png'))),
             InputDialogStateful(
                 //Mood
                 onInputCallback: (value) {
-                  inputData[2] = value[0];
                   inputData[3] = value[1];
+                  print("mood $value");
+                  box.add(Entry(timestamp: DateTime.now(), happinessLevel: value));
                 },
                 title: 'Mood/Stress Level',
                 icon: SvgPicture.asset("images/mood.svg")),
@@ -61,6 +70,7 @@ class InputPage extends StatelessWidget {
                 //Diet
                 onInputCallback: (value) {
                   inputData[5] = value;
+
                 },
                 title: 'Diet',
                 icon: SvgPicture.asset("images/diet.svg")),
@@ -68,6 +78,8 @@ class InputPage extends StatelessWidget {
                 //Hydration
                 onInputCallback: (value) {
                   inputData[6] = value;
+                  print("hydration $value");
+                  box.add(Entry(timestamp: DateTime.now(), waterAmt: value));
                 },
                 title: 'Hydration level',
                 icon: SvgPicture.asset("images/hydration.svg")),
@@ -75,6 +87,8 @@ class InputPage extends StatelessWidget {
                 //IBS Severity
                 onInputCallback: (value) {
                   inputData[7] = value;
+                  print("ibsIntensity $value");
+                  box.add(Entry(timestamp: DateTime.now(), ibsIntensity: value));
                 },
                 title: 'IBS Severity',
                 icon: SvgPicture.asset("images/ibsIntensity.svg")),
