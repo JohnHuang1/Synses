@@ -1,77 +1,44 @@
 import 'package:flutter/material.dart';
-import './graphs_page.dart';
-import './history_page.dart';
-import './input_page.dart';
-
-class Synses extends StatefulWidget {
-  @override
-  _SynsesState createState() => new _SynsesState();
-}
-
-class _SynsesState extends State<Synses> {
-  int _pageIndex = 0;
-  late PageController _pageController;
-
-  List<Widget> tabPages = [
-    InputPage(),
-    GraphPage(),
-    HistoryPage(),
-  ];
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: _pageIndex);
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: bottomMenu(),
-    );
-  }
-
-  Widget bottomMenu() {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageIndex,
-        onTap: onTabTapped,
-        backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.note_alt_outlined), label: "Input"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.auto_graph), label: "Trends"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.access_time_outlined), label: "History"),
-        ],
-      ),
-      body: PageView(
-        children: tabPages,
-        onPageChanged: onPageChanged,
-        controller: _pageController,
-      ),
-    );
-  }
-
-  void onPageChanged(int page) {
-    setState(() {
-      this._pageIndex = page;
-    });
-  }
-
-  void onTabTapped(int index) {
-    this._pageController.animateToPage(index,
-        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-  }
-}
+import 'package:provider/provider.dart';
+import 'package:synses/home_page.dart';
+import 'package:synses/home_page_model.dart';
+import 'package:synses/shared/routes.dart';
 
 void main() {
-  runApp(Synses());
+  runApp(SynsesApp());
+}
+
+class SynsesApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomePageModel>(create: (context) => HomePageModel()),
+      ],
+      child: MaterialApp(
+        onGenerateRoute: _routeFactory(),
+        theme: _theme(),
+      ),
+    );
+  }
+  RouteFactory _routeFactory(){
+    return (settings){
+      Map<String, dynamic>? arguments = settings.arguments as Map<String, dynamic>?;
+      Widget screen;
+      switch (settings.name) {
+        case HomePageRoute:
+          screen = HomePage();
+          break;
+        default:
+          return null;
+      }
+      return MaterialPageRoute(builder: (context) => screen);
+    };
+  }
+
+  ThemeData _theme(){
+    return ThemeData(
+    );
+  }
+
 }
