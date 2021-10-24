@@ -92,8 +92,9 @@ class InputPage extends StatelessWidget {
                   box.add(Entry(timestamp: DateTime.now(), waterAmt: value));
                 },
                 title: 'Hydration level',
-                label: 'Liters of Water',
+                label: 'Cups of Water',
                 icon: SvgPicture.asset("images/hydration.svg")),
+            Container(), //For spacing purposes
             InputDialogStateful(
                 //IBS Severity
                 onInputCallback: (value) {
