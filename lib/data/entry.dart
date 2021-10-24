@@ -115,7 +115,6 @@ class Entry extends HiveObject {
     return data;
   }
 
-
   Widget? getIcon(){
     Widget? icon;
     switch(getEntryType()){

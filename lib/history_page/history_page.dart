@@ -10,12 +10,6 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final entry = Entry(timestamp: DateTime.now(), timeSlept: 4);
-          Boxes.getEntries().add(entry);
-        },
-      ),
       body: ValueListenableBuilder<Box<Entry>>(
           valueListenable: Boxes.getEntries().listenable(),
           builder: (context, box, _) {

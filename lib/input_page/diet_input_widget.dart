@@ -110,44 +110,40 @@ class _CustomDialogState extends State<CustomDialog> {
   }
 
   Widget _itemBuilder(int index, String label) {
-    return Column(
+    return Row(
       children: [
-        Row(
-          children: [
-            Checkbox(
-                value: foodToggle[index],
-                onChanged: (toggle) {
-                  setState(() {
-                    foodToggle[index] = toggle!;
-                    foodVals.update(
-                        foodCat[index], (value) => 0);
-                    key += 1;
-                  });
-                }),
-            Text(label),
-            Expanded(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
+        Checkbox(
+            value: foodToggle[index],
+            onChanged: (toggle) {
+              setState(() {
+                foodToggle[index] = toggle!;
+                foodVals.update(
+                    foodCat[index], (value) => 0);
+                key += 1;
+              });
+            }),
+        Text(label),
+        Expanded(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                children: [
                   foodToggle[index]
                       ? Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 5),
-                          child: SmallSlider(
-                            valueChanged: (newValue) {
-                              setState(() {
-                                foodVals.update(
-                                    foodCat[index], (value) => newValue);
-                                key += 1;
-                                print("foodVals = $foodVals");
-                              });
-                            },
-                          ),
-                        )
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: SmallSlider(
+                      valueChanged: (newValue) {
+                        setState(() {
+                          foodVals.update(
+                              foodCat[index], (value) => newValue);
+                          key += 1;
+                          print("foodVals = $foodVals");
+                        });
+                      },
+                    ),
+                  )
                       : Container()
                 ]))
-          ],
-        ),
       ],
     );
   }
